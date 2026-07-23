@@ -1,125 +1,283 @@
-## FilaStarter Kit
+# MD Farma
 
-A Starter Kit For Filament with most necessities
-pre-configured based on personal preferences/requirements.
+Project web MD Farma dibangun menggunakan Laravel dengan fitur autentikasi, pengelolaan data pasien, dan live chat antara pasien dan dokter.
 
-Preview Login:
+## Persyaratan
 
-| Dark                                                                                                          | Light                                                                                                          |
-| ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| ![](https://raw.githubusercontent.com/raugadh/fila-starter/refs/heads/master/.github/preview-login-dark.webp) | ![](https://raw.githubusercontent.com/raugadh/fila-starter/refs/heads/master/.github/preview-login-light.webp) |
+Pastikan perangkat sudah memiliki:
 
-Preview DashBoard:
+* PHP 8.3 atau lebih baru
+* Composer
+* Node.js dan npm
+* MySQL atau MariaDB
+* XAMPP
+* Git
 
-| Dark                                                                                                              | Light                                                                                                              |
-| ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| ![](https://raw.githubusercontent.com/raugadh/fila-starter/refs/heads/master/.github/preview-dashboard-dark.webp) | ![](https://raw.githubusercontent.com/raugadh/fila-starter/refs/heads/master/.github/preview-dashboard-light.webp) |
+## Instalasi Project
 
-### Packages
+### 1. Clone Repository
 
-[Laravel v12](https://github.com/laravel/laravel)  
-[Livewire v4](https://github.com/livewire/livewire)  
-[Filament v5](https://github.com/filamentphp/filament)
+Buka PowerShell atau Terminal, kemudian jalankan:
 
-#### Packages Installed/Pre-configured
-
-- Filament Packages
-    - awcodes/overlook
-    - bezhansalleh/filament-shield
-    - caresome/filament-auth-designer
-    - charrafimed/global-search-modal
-    - dutchcodingcompany/filament-developer-logins
-    - jacobtims/filament-logger
-    - jeffgreco13/filament-breezy
-    - marcelweidum/filament-expiration-notice
-    - openplain/filament-shadcn-theme (Theme)
-
-- Other Packages
-    - barryvdh/laravel-debugbar
-    - laravel/boost
-
-### Compatibility
-
-| Starter Kit | Filament Version |
-| ----------- | ---------------- |
-| **2.x**     | **_3.x_**        |
-| **3.x**     | **4.x**          |
-| **4.x**     | **5.x**          |
-
-### Installation
-
-#### Create New Project
-
-```properties
-composer create-project --prefer-dist raugadh/fila-starter example-app
+```bash
+git clone https://github.com/Barthdc/project-manhata.git
 ```
 
-#### Deployment
+Masuk ke folder project Laravel:
 
-- Configure Project.
-    - Update Composer Packages
-    - Add Database Credentials
-    - Add ASSET_PREFIX if deployed application in sub-folder
-    - Link Storage
+```bash
+cd project-manhata/MD-Farma-Laravel-XAMPP
+```
 
-        ```properties
-        php artisan storage:link
-        ```
+Jika nama folder berbeda, masuk ke folder yang memiliki file `artisan`.
 
-- Initialize Project
+### 2. Install Dependency PHP
 
-    ```properties
-    php artisan project:init
-    ```
+Jalankan:
 
-- Update Permissions and Migrations
-    - Whenever new Resource , Page or migration is Added Run update command to migrate and create permissions.
-        ```properties
-        php artisan project:update
-        ```
+```bash
+composer install
+```
 
-- build vite assets
+### 3. Install Dependency Frontend
 
-    ```properties
-    npm install
-    ```
+Jalankan:
 
-    ```properties
-    npm run build
-    ```
+```bash
+npm install
+```
 
-- Clear/Generate New Cache
+### 4. Buat File Environment
 
-    ```properties
-    php artisan project:cache
-    ```
+Salin file `.env.example` menjadi `.env`.
 
-- Configure [Laravel Boost](https://github.com/laravel/boost)
+Pada PowerShell:
 
-    ```properties
-    php artisan boost:install
-    ```
+```powershell
+Copy-Item .env.example .env
+```
 
-##### Make sure to check custom console commands yourself and change them based on your requirements.
+Pada Command Prompt:
 
-### Lint & Fix
+```cmd
+copy .env.example .env
+```
 
-- Pint ('test') & Prettier('check')
+### 5. Generate Application Key
 
-    ```properties
-    composer lint
-    ```
+Jalankan:
 
-- Pint & Prettier('write')
+```bash
+php artisan key:generate
+```
 
-    ```properties
-    composer fix
-    ```
+### 6. Buat Database
 
-#### Enjoy
+Buka XAMPP, lalu aktifkan:
 
-    Thanks for using this kit, leave a star if you found this useful.
+```text
+Apache
+MySQL
+```
 
-## License
+Buka phpMyAdmin:
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+```text
+http://localhost/phpmyadmin
+```
+
+Buat database baru dengan nama:
+
+```text
+md_farma
+```
+
+### 7. Atur Koneksi Database
+
+Buka file `.env`, kemudian sesuaikan bagian berikut:
+
+```env
+APP_NAME="MD Farma"
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://127.0.0.1:8000
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=md_farma
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Jika MySQL memiliki password, isi bagian:
+
+```env
+DB_PASSWORD=password_mysql
+```
+
+### 8. Jalankan Migration dan Seeder
+
+Untuk instalasi baru dengan database kosong, jalankan:
+
+```bash
+php artisan migrate --seed
+```
+
+Jika tabel lama masih ada dan seluruh data boleh dihapus, jalankan:
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+> Perintah `migrate:fresh` akan menghapus seluruh tabel dan data lama.
+
+### 9. Buat Storage Link
+
+Jalankan:
+
+```bash
+php artisan storage:link
+```
+
+### 10. Bersihkan Cache Laravel
+
+Jalankan:
+
+```bash
+php artisan optimize:clear
+```
+
+### 11. Build File Frontend
+
+Untuk membuat file frontend versi produksi:
+
+```bash
+npm run build
+```
+
+Untuk pengembangan:
+
+```bash
+npm run dev
+```
+
+Biarkan terminal `npm run dev` tetap terbuka selama proses pengembangan.
+
+### 12. Jalankan Server Laravel
+
+Buka terminal baru, lalu jalankan:
+
+```bash
+php artisan serve
+```
+
+Aplikasi dapat dibuka melalui:
+
+```text
+http://127.0.0.1:8000
+```
+
+## Menjalankan Project Setiap Hari
+
+Aktifkan Apache dan MySQL melalui XAMPP.
+
+Buka terminal pertama:
+
+```bash
+php artisan serve
+```
+
+Buka terminal kedua:
+
+```bash
+npm run dev
+```
+
+Kemudian buka:
+
+```text
+http://127.0.0.1:8000
+```
+
+## Akun Awal
+
+Setelah menjalankan seeder, akun berikut dapat digunakan.
+
+### Admin
+
+```text
+Email    : admin@mdfarma.test
+Password : Admin123!
+```
+
+### Dokter
+
+```text
+Email    : dokter@mdfarma.test
+Password : Dokter123!
+```
+
+Pasien dapat membuat akun melalui halaman:
+
+```text
+http://127.0.0.1:8000/register
+```
+
+## Mengatasi Error Umum
+
+### Application key belum tersedia
+
+Jalankan:
+
+```bash
+php artisan key:generate
+```
+
+### Database tidak ditemukan
+
+Pastikan database `md_farma` sudah dibuat dan konfigurasi `.env` sudah benar.
+
+### Perubahan tampilan tidak muncul
+
+Jalankan:
+
+```bash
+php artisan optimize:clear
+npm run build
+```
+
+Kemudian lakukan hard refresh pada browser:
+
+```text
+Ctrl + F5
+```
+
+### Route atau view masih memakai cache lama
+
+Jalankan:
+
+```bash
+php artisan route:clear
+php artisan view:clear
+php artisan config:clear
+php artisan cache:clear
+```
+
+### Dependency PHP bermasalah
+
+Jalankan:
+
+```bash
+composer install
+composer dump-autoload
+```
+
+### Dependency frontend bermasalah
+
+Jalankan:
+
+```bash
+npm install
+npm run build
+```
