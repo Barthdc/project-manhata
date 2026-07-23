@@ -12,10 +12,10 @@ final class Conversation extends Model
 {
     protected $fillable = [
         'patient_id',
-        'staff_id',
+        'doctor_id',
         'subject',
         'status',
-        'closed_at',
+        'last_message_at',
     ];
 
     public function patient(): BelongsTo
@@ -23,13 +23,20 @@ final class Conversation extends Model
         return $this->belongsTo(User::class, 'patient_id');
     }
 
-    public function staff(): BelongsTo
+    public function doctor(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'staff_id');
+        return $this->belongsTo(User::class, 'doctor_id');
     }
 
     public function messages(): HasMany
     {
-        return $this->hasMany(Message::class);
+        return $this->hasMany(Message::class)->oldest();
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'last_message_at' => 'datetime',
+        ];
     }
 }

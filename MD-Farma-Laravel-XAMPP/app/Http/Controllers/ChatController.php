@@ -4,100 +4,163 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Events\MessageSent;
 use App\Models\Conversation;
 use App\Models\Message;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 final class ChatController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        /**
-         * Halaman /konsultasi hanya untuk user dengan role pasien.
-         * Jadi admin/apoteker tidak menggunakan halaman ini.
-         */
-        if (! Auth::user()->hasRole('pasien')) {
-            abort(403, 'Halaman konsultasi hanya untuk pasien.');
+        $user = $request->user();
+
+        $query = Conversation::query()->with(['patient', 'doctor']);
+
+        if ($user->isPatient()) {
+            $query->where('patient_id', $user->id);
+        } elseif ($user->isDoctor()) {
+            $query->where(function ($builder) use ($user) {
+                $builder->whereNull('doctor_id')
+                    ->orWhere('doctor_id', $user->id);
+            });
+        } else {
+            abort(403);
         }
 
-        $conversation = Conversation::query()
-            ->where('patient_id', Auth::id())
-            ->where('status', 'open')
-            ->latest()
-            ->first();
+        $conversations = $query
+            ->latest('last_message_at')
+            ->paginate(15);
 
-        if (! $conversation) {
-            $conversation = Conversation::create([
-                'patient_id' => Auth::id(),
-                'staff_id' => null,
-                'subject' => 'Konsultasi Obat',
-                'status' => 'open',
-            ]);
-        }
-
-        $messages = $conversation->messages()
-            ->with('sender')
-            ->oldest()
-            ->get();
-
-        return view('chat.index', [
-            'conversation' => $conversation,
-            'messages' => $messages,
-        ]);
+        return view('chat.index', compact('conversations'));
     }
 
-    public function send(Request $request, Conversation $conversation): JsonResponse
+    public function create(Request $request): View
     {
-        /**
-         * Hanya pasien yang boleh mengirim pesan dari halaman /konsultasi.
-         * Admin/apoteker nanti membalas dari halaman Filament.
-         */
-        if (! Auth::user()->hasRole('pasien')) {
-            abort(403, 'Hanya pasien yang dapat mengirim pesan dari halaman konsultasi.');
-        }
+        abort_unless($request->user()->isPatient(), 403);
 
-        /**
-         * Pastikan pasien hanya bisa mengirim pesan
-         * ke conversation miliknya sendiri.
-         */
-        if ((int) $conversation->patient_id !== (int) Auth::id()) {
-            abort(403, 'Anda tidak memiliki akses ke konsultasi ini.');
-        }
+        return view('chat.create');
+    }
 
-        $request->validate([
-            'message' => ['required', 'string', 'max:1000'],
+    public function storeConversation(Request $request): RedirectResponse
+    {
+        abort_unless($request->user()->isPatient(), 403);
+
+        $data = $request->validate([
+            'subject' => ['required', 'string', 'max:150'],
+            'message' => ['required', 'string', 'max:3000'],
         ]);
 
-        if ($conversation->status === 'closed') {
-            return response()->json([
-                'success' => false,
-                'message' => 'Konsultasi sudah ditutup.',
-            ], 403);
+        $conversation = DB::transaction(function () use ($request, $data): Conversation {
+            $conversation = Conversation::create([
+                'patient_id' => $request->user()->id,
+                'subject' => $data['subject'],
+                'status' => 'open',
+                'last_message_at' => now(),
+            ]);
+
+            Message::create([
+                'conversation_id' => $conversation->id,
+                'sender_id' => $request->user()->id,
+                'body' => $data['message'],
+            ]);
+
+            return $conversation;
+        });
+
+        return redirect()->route('chat.show', $conversation);
+    }
+
+    public function show(Request $request, Conversation $conversation): View
+    {
+        $this->authorizeConversation($request, $conversation);
+
+        if ($request->user()->isDoctor() && $conversation->doctor_id === null) {
+            $conversation->update(['doctor_id' => $request->user()->id]);
         }
 
-        $message = Message::create([
-            'conversation_id' => $conversation->id,
-            'sender_id' => Auth::id(),
-            'message' => $request->message,
-            'is_read' => false,
+        $conversation->load(['patient.patientProfile', 'doctor', 'messages.sender']);
+
+        Message::query()
+            ->where('conversation_id', $conversation->id)
+            ->where('sender_id', '!=', $request->user()->id)
+            ->whereNull('read_at')
+            ->update(['read_at' => now()]);
+
+        return view('chat.show', compact('conversation'));
+    }
+
+    public function storeMessage(Request $request, Conversation $conversation): RedirectResponse
+    {
+        $this->authorizeConversation($request, $conversation);
+
+        $data = $request->validate([
+            'body' => ['required', 'string', 'max:3000'],
         ]);
 
-        broadcast(new MessageSent($message))->toOthers();
+        DB::transaction(function () use ($request, $conversation, $data): void {
+            Message::create([
+                'conversation_id' => $conversation->id,
+                'sender_id' => $request->user()->id,
+                'body' => $data['body'],
+            ]);
 
-        return response()->json([
-            'success' => true,
-            'message' => [
+            $conversation->update([
+                'last_message_at' => now(),
+                'status' => 'open',
+            ]);
+        });
+
+        return redirect()
+            ->route('chat.show', $conversation)
+            ->withFragment('latest-message');
+    }
+
+    public function messages(Request $request, Conversation $conversation): JsonResponse
+    {
+        $this->authorizeConversation($request, $conversation);
+
+        $afterId = max(0, $request->integer('after_id'));
+
+        $messages = $conversation->messages()
+            ->with('sender:id,name,role')
+            ->where('id', '>', $afterId)
+            ->get()
+            ->map(fn (Message $message) => [
                 'id' => $message->id,
-                'conversation_id' => $message->conversation_id,
                 'sender_id' => $message->sender_id,
-                'sender_name' => Auth::user()->name,
-                'message' => $message->message,
-                'created_at' => $message->created_at->format('H:i'),
-            ],
-        ]);
+                'sender_name' => $message->sender->name,
+                'sender_role' => $message->sender->role,
+                'body' => $message->body,
+                'time' => $message->created_at->format('H:i'),
+            ]);
+
+        return response()->json(['messages' => $messages]);
+    }
+
+    public function close(Request $request, Conversation $conversation): RedirectResponse
+    {
+        $this->authorizeConversation($request, $conversation);
+
+        abort_unless($request->user()->isDoctor(), 403);
+
+        $conversation->update(['status' => 'closed']);
+
+        return back()->with('success', 'Percakapan ditutup.');
+    }
+
+    private function authorizeConversation(Request $request, Conversation $conversation): void
+    {
+        $user = $request->user();
+
+        $allowed = $user->isPatient()
+            ? $conversation->patient_id === $user->id
+            : $user->isDoctor()
+                && ($conversation->doctor_id === null || $conversation->doctor_id === $user->id);
+
+        abort_unless($allowed, 403);
     }
 }

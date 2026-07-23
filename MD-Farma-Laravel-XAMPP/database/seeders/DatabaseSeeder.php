@@ -6,29 +6,27 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
 
 final class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        foreach (['super_admin', 'admin', 'apoteker', 'pasien'] as $roleName) {
-            Role::firstOrCreate(['name' => $roleName, 'guard_name' => 'web']);
-        }
+        User::updateOrCreate(
+            ['email' => 'admin@mdfarma.test'],
+            [
+                'name' => 'Admin MD Farma',
+                'password' => 'Admin123!',
+                'role' => User::ROLE_ADMIN,
+            ]
+        );
 
-        $accounts = [
-            ['name' => 'Administrator', 'email' => 'admin@mdfarma.test', 'role' => 'super_admin'],
-            ['name' => 'Apoteker MD Farma', 'email' => 'apoteker@mdfarma.test', 'role' => 'apoteker'],
-            ['name' => 'Pasien Demo', 'email' => 'pasien@mdfarma.test', 'role' => 'pasien'],
-        ];
-
-        foreach ($accounts as $account) {
-            $user = User::updateOrCreate(
-                ['email' => $account['email']],
-                ['name' => $account['name'], 'password' => Hash::make('password'), 'email_verified_at' => now()]
-            );
-            $user->syncRoles([$account['role']]);
-        }
+        User::updateOrCreate(
+            ['email' => 'dokter@mdfarma.test'],
+            [
+                'name' => 'Dokter MD Farma',
+                'password' => 'Dokter123!',
+                'role' => User::ROLE_DOCTOR,
+            ]
+        );
     }
 }

@@ -29,13 +29,13 @@
         .dark .admin-chat-page {
             --md-card: #111827;
             --md-bg: #0f172a;
-            --md-border: rgba(255, 255, 255, 0.10);
+            --md-border: rgba(255, 255, 255, 0.1);
             --md-dark: #f8fafc;
             --md-muted: #94a3b8;
 
             background:
                 radial-gradient(circle at 8% 8%, rgba(22, 163, 74, 0.12), transparent 28%),
-                radial-gradient(circle at 92% 14%, rgba(14, 165, 233, 0.10), transparent 24%),
+                radial-gradient(circle at 92% 14%, rgba(14, 165, 233, 0.1), transparent 24%),
                 linear-gradient(135deg, #020617 0%, #0f172a 100%);
         }
 
@@ -57,7 +57,7 @@
 
         .dark .admin-card {
             background: rgba(15, 23, 42, 0.86);
-            border-color: rgba(255, 255, 255, 0.10);
+            border-color: rgba(255, 255, 255, 0.1);
         }
 
         .consult-hero {
@@ -71,7 +71,7 @@
         }
 
         .consult-hero::after {
-            content: "";
+            content: '';
             position: absolute;
             width: 180px;
             height: 180px;
@@ -91,7 +91,7 @@
             margin-bottom: 20px;
             border-radius: 22px;
             background: rgba(255, 255, 255, 0.18);
-            box-shadow: inset 0 0 0 1px rgba(255,255,255,.25);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
             font-size: 30px;
         }
 
@@ -109,7 +109,7 @@
             position: relative;
             z-index: 1;
             margin: 12px 0 0;
-            color: rgba(255,255,255,.88);
+            color: rgba(255, 255, 255, 0.88);
             font-size: 14px;
             line-height: 1.75;
         }
@@ -126,15 +126,15 @@
             padding: 14px;
             border-radius: 18px;
             background: rgba(255, 255, 255, 0.15);
-            box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
         }
 
         .hero-mini-label {
-            color: rgba(255,255,255,.72);
+            color: rgba(255, 255, 255, 0.72);
             font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: .08em;
+            letter-spacing: 0.08em;
         }
 
         .hero-mini-value {
@@ -143,7 +143,9 @@
             font-weight: 800;
         }
 
-        .detail-card { padding: 20px; }
+        .detail-card {
+            padding: 20px;
+        }
 
         .detail-title-row {
             display: flex;
@@ -171,8 +173,14 @@
             font-weight: 800;
         }
 
-        .status-badge.open { color: #166534; background: #dcfce7; }
-        .status-badge.closed { color: #991b1b; background: #fee2e2; }
+        .status-badge.open {
+            color: #166534;
+            background: #dcfce7;
+        }
+        .status-badge.closed {
+            color: #991b1b;
+            background: #fee2e2;
+        }
 
         .status-badge span {
             width: 8px;
@@ -182,7 +190,10 @@
             box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.16);
         }
 
-        .detail-list { display: grid; gap: 14px; }
+        .detail-list {
+            display: grid;
+            gap: 14px;
+        }
 
         .detail-item {
             display: flex;
@@ -232,12 +243,23 @@
             color: white;
             font-weight: 800;
             cursor: pointer;
-            transition: transform .16s ease, box-shadow .16s ease, opacity .16s ease;
+            transition:
+                transform 0.16s ease,
+                box-shadow 0.16s ease,
+                opacity 0.16s ease;
         }
 
-        .action-button:hover { transform: translateY(-1px); }
-        .action-button.danger { background: linear-gradient(135deg, #ef4444, #dc2626); box-shadow: 0 14px 28px rgba(239, 68, 68, .18); }
-        .action-button.success { background: linear-gradient(135deg, #22c55e, #0ea5e9); box-shadow: 0 14px 28px rgba(34, 197, 94, .18); }
+        .action-button:hover {
+            transform: translateY(-1px);
+        }
+        .action-button.danger {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            box-shadow: 0 14px 28px rgba(239, 68, 68, 0.18);
+        }
+        .action-button.success {
+            background: linear-gradient(135deg, #22c55e, #0ea5e9);
+            box-shadow: 0 14px 28px rgba(34, 197, 94, 0.18);
+        }
 
         .chat-panel {
             display: grid;
@@ -251,7 +273,9 @@
             background: rgba(255, 255, 255, 0.86);
         }
 
-        .dark .chat-topbar { background: rgba(15, 23, 42, 0.86); }
+        .dark .chat-topbar {
+            background: rgba(15, 23, 42, 0.86);
+        }
 
         .topbar-inner {
             display: flex;
@@ -308,7 +332,10 @@
             font-weight: 900;
         }
 
-        .dark .live-pill { background: rgba(255, 255, 255, 0.08); color: #cbd5e1; }
+        .dark .live-pill {
+            background: rgba(255, 255, 255, 0.08);
+            color: #cbd5e1;
+        }
 
         .live-pill span {
             width: 9px;
@@ -325,19 +352,28 @@
             padding: 24px;
             scroll-behavior: smooth;
             background:
-                linear-gradient(rgba(248, 250, 252, .74), rgba(248, 250, 252, .74)),
+                linear-gradient(rgba(248, 250, 252, 0.74), rgba(248, 250, 252, 0.74)),
                 url("data:image/svg+xml,%3Csvg width='28' height='28' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='4' cy='4' r='1' fill='%23bfdbfe' opacity='.75'/%3E%3C/svg%3E");
         }
 
         .dark .chat-scroll {
             background:
-                linear-gradient(rgba(15, 23, 42, .80), rgba(15, 23, 42, .80)),
+                linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)),
                 url("data:image/svg+xml,%3Csvg width='28' height='28' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='4' cy='4' r='1' fill='%23334155' opacity='.90'/%3E%3C/svg%3E");
         }
 
-        .chat-scroll::-webkit-scrollbar { width: 10px; }
-        .chat-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border: 3px solid #f8fafc; border-radius: 999px; }
-        .dark .chat-scroll::-webkit-scrollbar-thumb { background: #475569; border-color: #0f172a; }
+        .chat-scroll::-webkit-scrollbar {
+            width: 10px;
+        }
+        .chat-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border: 3px solid #f8fafc;
+            border-radius: 999px;
+        }
+        .dark .chat-scroll::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-color: #0f172a;
+        }
 
         .history-chip {
             width: fit-content;
@@ -350,22 +386,35 @@
             font-weight: 900;
         }
 
-        .dark .history-chip { background: rgba(255, 255, 255, 0.08); }
+        .dark .history-chip {
+            background: rgba(255, 255, 255, 0.08);
+        }
 
-        .message-list { display: grid; gap: 20px; }
+        .message-list {
+            display: grid;
+            gap: 20px;
+        }
 
         .message-row {
             display: flex;
             align-items: flex-end;
             gap: 12px;
-            animation: message-in .2s ease-out;
+            animation: message-in 0.2s ease-out;
         }
 
-        .message-row.mine { justify-content: flex-end; }
+        .message-row.mine {
+            justify-content: flex-end;
+        }
 
         @keyframes message-in {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .mini-avatar {
@@ -387,7 +436,9 @@
             color: #166534;
         }
 
-        .message-body { max-width: min(620px, 72%); }
+        .message-body {
+            max-width: min(620px, 72%);
+        }
 
         .message-meta {
             display: flex;
@@ -399,10 +450,18 @@
             font-weight: 900;
         }
 
-        .message-row.mine .message-meta { justify-content: flex-end; color: #15803d; }
-        .dark .message-meta { color: #cbd5e1; }
+        .message-row.mine .message-meta {
+            justify-content: flex-end;
+            color: #15803d;
+        }
+        .dark .message-meta {
+            color: #cbd5e1;
+        }
 
-        .message-time { color: #94a3b8; font-weight: 700; }
+        .message-time {
+            color: #94a3b8;
+            font-weight: 700;
+        }
 
         .bubble {
             padding: 13px 16px;
@@ -429,7 +488,7 @@
             color: white;
             border-radius: 20px 20px 7px 20px;
             background: linear-gradient(135deg, var(--md-primary), var(--md-sky));
-            box-shadow: 0 16px 30px rgba(14, 165, 233, 0.20);
+            box-shadow: 0 16px 30px rgba(14, 165, 233, 0.2);
         }
 
         .empty-chat {
@@ -472,7 +531,9 @@
             background: rgba(255, 255, 255, 0.92);
         }
 
-        .dark .reply-area { background: rgba(15, 23, 42, 0.92); }
+        .dark .reply-area {
+            background: rgba(15, 23, 42, 0.92);
+        }
 
         .reply-box {
             display: grid;
@@ -484,7 +545,9 @@
             box-shadow: 0 10px 26px rgba(15, 23, 42, 0.05);
         }
 
-        .dark .reply-box { background: rgba(30, 41, 59, 0.76); }
+        .dark .reply-box {
+            background: rgba(30, 41, 59, 0.76);
+        }
 
         .reply-textarea {
             width: 100%;
@@ -499,7 +562,9 @@
             line-height: 1.6;
         }
 
-        .reply-textarea::placeholder { color: #94a3b8; }
+        .reply-textarea::placeholder {
+            color: #94a3b8;
+        }
 
         .reply-footer {
             display: flex;
@@ -508,7 +573,10 @@
             gap: 14px;
         }
 
-        .reply-note { color: var(--md-muted); font-size: 12px; }
+        .reply-note {
+            color: var(--md-muted);
+            font-size: 12px;
+        }
 
         .send-button {
             display: inline-flex;
@@ -522,8 +590,10 @@
             font-weight: 900;
             cursor: pointer;
             background: linear-gradient(135deg, var(--md-primary), var(--md-sky));
-            box-shadow: 0 14px 28px rgba(14, 165, 233, 0.20);
-            transition: transform .16s ease, box-shadow .16s ease;
+            box-shadow: 0 14px 28px rgba(14, 165, 233, 0.2);
+            transition:
+                transform 0.16s ease,
+                box-shadow 0.16s ease;
         }
 
         .send-button:hover {
@@ -540,7 +610,9 @@
             line-height: 1.7;
         }
 
-        .dark .closed-notice { background: rgba(30, 41, 59, 0.82); }
+        .dark .closed-notice {
+            background: rgba(30, 41, 59, 0.82);
+        }
 
         .error-text {
             color: #dc2626;
@@ -549,8 +621,12 @@
         }
 
         @media (max-width: 1180px) {
-            .admin-chat-layout { grid-template-columns: 1fr; }
-            .chat-panel { min-height: 700px; }
+            .admin-chat-layout {
+                grid-template-columns: 1fr;
+            }
+            .chat-panel {
+                min-height: 700px;
+            }
         }
 
         @media (max-width: 720px) {
@@ -565,8 +641,12 @@
                 flex-direction: column;
             }
 
-            .message-body { max-width: 80%; }
-            .send-button { width: 100%; }
+            .message-body {
+                max-width: 80%;
+            }
+            .send-button {
+                width: 100%;
+            }
         }
     </style>
 
@@ -574,10 +654,10 @@
         class="admin-chat-page"
         x-data
         x-init="
-            const box = document.getElementById('adminChatBox');
+            const box = document.getElementById('adminChatBox')
             if (box) {
-                box.scrollTop = box.scrollHeight;
-                $nextTick(() => box.scrollTop = box.scrollHeight);
+                box.scrollTop = box.scrollHeight
+                $nextTick(() => (box.scrollTop = box.scrollHeight))
             }
         "
     >
@@ -589,7 +669,8 @@
                     <h2>Ruang Konsultasi Apotek</h2>
 
                     <p>
-                        Kelola percakapan pasien, berikan respon konsultasi, dan simpan seluruh riwayat layanan secara terstruktur.
+                        Kelola percakapan pasien, berikan respon konsultasi, dan simpan seluruh riwayat layanan secara
+                        terstruktur.
                     </p>
 
                     <div class="hero-mini-grid">
@@ -600,19 +681,27 @@
 
                         <div class="hero-mini-card">
                             <div class="hero-mini-label">Ditangani Oleh</div>
-                            <div class="hero-mini-value">{{ $record->staff->name ?? auth()->user()->name ?? 'Admin' }}</div>
+                            <div class="hero-mini-value">
+                                {{ $record->staff->name ?? (auth()->user()->name ?? 'Admin') }}
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="admin-card detail-card" style="margin-top: 18px;">
+                <div class="admin-card detail-card" style="margin-top: 18px">
                     <div class="detail-title-row">
                         <h3 class="detail-title">Detail Konsultasi</h3>
 
                         @if ($record->status === 'open')
-                            <span class="status-badge open"><span></span>Open</span>
+                            <span class="status-badge open">
+                                <span></span>
+                                Open
+                            </span>
                         @else
-                            <span class="status-badge closed"><span></span>Closed</span>
+                            <span class="status-badge closed">
+                                <span></span>
+                                Closed
+                            </span>
                         @endif
                     </div>
 
@@ -626,18 +715,22 @@
                         </div>
 
                         <div class="detail-item">
-                            <div class="detail-icon" style="background:#e0f2fe;color:#0369a1;">💬</div>
+                            <div class="detail-icon" style="background: #e0f2fe; color: #0369a1">💬</div>
                             <div>
                                 <div class="detail-label">Jumlah Pesan</div>
-                                <div id="messageCount" class="detail-value">{{ $record->messages()->count() }} pesan tersimpan</div>
+                                <div id="messageCount" class="detail-value">
+                                    {{ $record->messages()->count() }} pesan tersimpan
+                                </div>
                             </div>
                         </div>
 
                         <div class="detail-item">
-                            <div class="detail-icon" style="background:#fef3c7;color:#92400e;">⏱️</div>
+                            <div class="detail-icon" style="background: #fef3c7; color: #92400e">⏱️</div>
                             <div>
                                 <div class="detail-label">Terakhir Update</div>
-                                <div id="lastUpdate" class="detail-value">{{ $record->updated_at?->format('d M Y H:i') }}</div>
+                                <div id="lastUpdate" class="detail-value">
+                                    {{ $record->updated_at?->format('d M Y H:i') }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -675,14 +768,15 @@
                     </div>
                 </header>
 
-                <div
-                    id="adminChatBox"
-                    class="chat-scroll"
-                >
+                <div id="adminChatBox" class="chat-scroll">
                     <div class="history-chip">Riwayat Konsultasi</div>
 
                     @php
-                        $chatMessages = $record->messages()->with('sender')->oldest()->get();
+                        $chatMessages = $record
+                            ->messages()
+                            ->with('sender')
+                            ->oldest()
+                            ->get();
                     @endphp
 
                     <div id="messageList" class="message-list">
@@ -737,9 +831,7 @@
                                 @enderror
 
                                 <div class="reply-footer">
-                                    <div class="reply-note">
-                                        Balasan akan tersimpan pada riwayat konsultasi pasien.
-                                    </div>
+                                    <div class="reply-note">Balasan akan tersimpan pada riwayat konsultasi pasien.</div>
 
                                     <button type="submit" class="send-button">
                                         Kirim Balasan
@@ -759,36 +851,36 @@
     </div>
 
     <script>
-        window.mdFarmaAdminChat = window.mdFarmaAdminChat || {};
+        window.mdFarmaAdminChat = window.mdFarmaAdminChat || {}
 
         window.mdFarmaAdminChat.boot = function () {
-            const conversationId = @json($record->id);
-            const currentUserId = @json(auth()->id());
+            const conversationId = @json($record->id)
+            const currentUserId = @json(auth()->id())
 
-            let messageTotal = Number(@json($record->messages()->count()));
+            let messageTotal = Number(@json($record->messages()->count()))
 
-            const chatBox = document.getElementById('adminChatBox');
-            const messageList = document.getElementById('messageList');
-            const messageCount = document.getElementById('messageCount');
-            const lastUpdate = document.getElementById('lastUpdate');
+            const chatBox = document.getElementById('adminChatBox')
+            const messageList = document.getElementById('messageList')
+            const messageCount = document.getElementById('messageCount')
+            const lastUpdate = document.getElementById('lastUpdate')
 
             if (!chatBox || !messageList) {
-                return;
+                return
             }
 
             if (window.mdFarmaAdminChat.currentChannel === conversationId) {
-                return;
+                return
             }
 
             if (window.mdFarmaAdminChat.currentChannel && window.Echo) {
-                window.Echo.leave(`private-conversation.${window.mdFarmaAdminChat.currentChannel}`);
-                window.Echo.leave(`conversation.${window.mdFarmaAdminChat.currentChannel}`);
+                window.Echo.leave(`private-conversation.${window.mdFarmaAdminChat.currentChannel}`)
+                window.Echo.leave(`conversation.${window.mdFarmaAdminChat.currentChannel}`)
             }
 
-            window.mdFarmaAdminChat.currentChannel = conversationId;
+            window.mdFarmaAdminChat.currentChannel = conversationId
 
             function scrollBottom() {
-                chatBox.scrollTop = chatBox.scrollHeight;
+                chatBox.scrollTop = chatBox.scrollHeight
             }
 
             function escapeHtml(value) {
@@ -797,49 +889,52 @@
                     .replaceAll('<', '&lt;')
                     .replaceAll('>', '&gt;')
                     .replaceAll('"', '&quot;')
-                    .replaceAll("'", '&#039;');
+                    .replaceAll("'", '&#039;')
             }
 
             function getInitial(name) {
-                return String(name || 'U').trim().charAt(0).toUpperCase();
+                return String(name || 'U')
+                    .trim()
+                    .charAt(0)
+                    .toUpperCase()
             }
 
             function removeEmptyState() {
-                const emptyChat = document.getElementById('emptyChat');
+                const emptyChat = document.getElementById('emptyChat')
 
                 if (emptyChat) {
-                    emptyChat.remove();
+                    emptyChat.remove()
                 }
             }
 
             function updateMeta() {
-                messageTotal += 1;
+                messageTotal += 1
 
                 if (messageCount) {
-                    messageCount.textContent = `${messageTotal} pesan tersimpan`;
+                    messageCount.textContent = `${messageTotal} pesan tersimpan`
                 }
 
                 if (lastUpdate) {
-                    lastUpdate.textContent = 'Baru saja';
+                    lastUpdate.textContent = 'Baru saja'
                 }
             }
 
             function appendMessage(data) {
                 if (!data || !data.id) {
-                    return;
+                    return
                 }
 
                 if (document.querySelector(`[data-message-id="${data.id}"]`)) {
-                    return;
+                    return
                 }
 
-                removeEmptyState();
+                removeEmptyState()
 
-                const isMine = Number(data.sender_id) === Number(currentUserId);
-                const row = document.createElement('div');
+                const isMine = Number(data.sender_id) === Number(currentUserId)
+                const row = document.createElement('div')
 
-                row.className = `message-row ${isMine ? 'mine' : ''}`;
-                row.dataset.messageId = data.id;
+                row.className = `message-row ${isMine ? 'mine' : ''}`
+                row.dataset.messageId = data.id
 
                 row.innerHTML = `
                     <div class="mini-avatar">${escapeHtml(getInitial(data.sender_name))}</div>
@@ -854,47 +949,49 @@
                             ${escapeHtml(data.message)}
                         </div>
                     </div>
-                `;
+                `
 
-                messageList.appendChild(row);
-                updateMeta();
-                scrollBottom();
+                messageList.appendChild(row)
+                updateMeta()
+                scrollBottom()
             }
 
             function subscribeRealtime() {
                 if (!window.Echo) {
-                    console.warn('Laravel Echo belum tersedia di halaman admin. Cek file resources/js/app.js dan npm run build/dev.');
-                    setTimeout(subscribeRealtime, 500);
-                    return;
+                    console.warn(
+                        'Laravel Echo belum tersedia di halaman admin. Cek file resources/js/app.js dan npm run build/dev.'
+                    )
+                    setTimeout(subscribeRealtime, 500)
+                    return
                 }
 
-                console.log(`Subscribe realtime: conversation.${conversationId}`);
+                console.log(`Subscribe realtime: conversation.${conversationId}`)
 
                 window.Echo.private(`conversation.${conversationId}`)
                     .listen('.message.sent', function (event) {
-                        console.log('Pesan realtime diterima admin:', event);
-                        appendMessage(event.message);
+                        console.log('Pesan realtime diterima admin:', event)
+                        appendMessage(event.message)
                     })
                     .error(function (error) {
-                        console.error('Gagal subscribe private channel admin:', error);
-                    });
+                        console.error('Gagal subscribe private channel admin:', error)
+                    })
             }
 
-            scrollBottom();
-            subscribeRealtime();
-        };
+            scrollBottom()
+            subscribeRealtime()
+        }
 
         document.addEventListener('DOMContentLoaded', function () {
-            window.mdFarmaAdminChat.boot();
-        });
+            window.mdFarmaAdminChat.boot()
+        })
 
         document.addEventListener('livewire:navigated', function () {
-            window.mdFarmaAdminChat.currentChannel = null;
-            window.mdFarmaAdminChat.boot();
-        });
+            window.mdFarmaAdminChat.currentChannel = null
+            window.mdFarmaAdminChat.boot()
+        })
 
         setTimeout(function () {
-            window.mdFarmaAdminChat.boot();
-        }, 800);
+            window.mdFarmaAdminChat.boot()
+        }, 800)
     </script>
 </x-filament-panels::page>

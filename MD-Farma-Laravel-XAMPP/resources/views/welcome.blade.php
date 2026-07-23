@@ -1,333 +1,593 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MediApotek — Health & Pharmacy Landing Page</title>
-  <meta name="description" content="Landing page apotek dan layanan kesehatan modern, responsive untuk desktop dan mobile." />
-  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
-</head>
-<body>
-  <div class="site-shell">
-    <header class="header" id="top">
-      <div class="topbar">
-        <div class="topbar__left">
-          <span>☎ Phone: +62 812-3456-7890</span>
-          <span>✉ Email: info@mediapotek.com</span>
-          <span>📍 Jl. Kesehatan No. 21, Indonesia</span>
-        </div>
-        <div class="topbar__right">
-          <span>🇮🇩 Indonesia</span>
-          <span class="divider"></span>
-          <span>Follow Us:</span>
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="Twitter">x</a>
-          <a href="#" aria-label="Instagram">ig</a>
-          <a href="#" aria-label="Youtube">yt</a>
-        </div>
-      </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      <nav class="navbar">
-        <a href="#top" class="brand" aria-label="MediApotek Home">
-          <span class="brand__mark"></span>
-          <span>
-            <strong>MediApotek</strong>
-            <small>Health & Pharmacy</small>
-          </span>
-        </a>
+        <title>Live Chat Apotek | MD Farma</title>
 
-        <button class="nav-toggle" type="button" aria-label="Buka menu" data-nav-toggle>
-          <span></span><span></span><span></span>
-        </button>
+        <meta name="description" content="Konsultasi langsung dengan apoteker MD Farma melalui live chat." />
 
-        <ul class="nav-menu" data-nav-menu>
-          <li><a href="#top" class="active">Home +</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#services">Services +</a></li>
-          <li><a href="#process">Pages +</a></li>
-          <li><a href="#blog">Blog +</a></li>
-          <li><a href="#contact">Contact Us</a></li>
-        </ul>
+        <style>
+            :root {
+                --background: #f4f8f6;
+                --surface: #ffffff;
+                --primary: #17845b;
+                --primary-dark: #0f6847;
+                --text: #17352a;
+                --muted: #678077;
+                --border: #dce9e3;
+                --shadow: 0 24px 60px rgba(23, 132, 91, 0.12);
+            }
 
-        <div class="nav-actions">
-          <button class="icon-btn" aria-label="Cari">⌕</button>
-          <button class="icon-btn cart" aria-label="Keranjang">🛒<span>0</span></button>
-          <a class="btn btn--green" href="{{ route('chat.index') }}">Konsultasi Online</a>
-        </div>
-      </nav>
-    </header>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
 
-    <main>
-      <section class="hero section-pad">
-        <div class="decor decor--dots"></div>
-        <div class="decor decor--plus decor--plus-1">✚</div>
-        <div class="decor decor--plus decor--plus-2">✚</div>
-        <div class="decor decor--plus decor--plus-3">✚</div>
-        <div class="hero__content">
-          <span class="eyebrow"><i></i> 24/7 Emergency Pharmacy Service</span>
-          <h1>Caring for <span>Health</span><br />Caring for You</h1>
-          <p>Layanan apotek modern untuk konsultasi obat, resep dokter, vitamin, alat kesehatan, dan pengantaran obat yang cepat serta terpercaya.</p>
-          <div class="hero__buttons">
-            <a href="#about" class="btn btn--green">Discover More</a>
-            <a href="{{ route('filament.admin.auth.login') }}" class="btn btn--blue">Login</a>
-          </div>
-        </div>
-        <div class="hero__visual" aria-hidden="true">
-          <img src="{{ asset('assets/img/hero-pharmacist.svg') }}" alt="Ilustrasi apoteker profesional" />
-        </div>
-      </section>
+            html {
+                scroll-behavior: smooth;
+            }
 
-      <section class="about section-pad" id="about">
-        <div class="about__visual reveal">
-          <img src="{{ asset('assets/img/about-pharmacy.svg') }}" alt="Ilustrasi layanan apotek" />
-          <div class="doctor-card">
-            <strong>Apt. Sinta Pratiwi</strong>
-            <span>Konsultan Obat</span>
-            <div>★★★★★</div>
-            <small>+62 812 7896</small>
-          </div>
-        </div>
-        <div class="about__content reveal">
-          <span class="eyebrow"><i></i> About Us Company</span>
-          <h2>Affordable Health Care Solutions</h2>
-          <p>MediApotek membantu pelanggan mendapatkan obat, produk kesehatan, dan konsultasi farmasi dengan proses yang rapi, aman, dan mudah digunakan.</p>
-          <div class="feature-grid">
-            <span>💚 Apoteker Profesional</span>
-            <span>💚 Fasilitas Lengkap</span>
-            <span>💚 Pesan Obat Cepat</span>
-            <span>💚 Konsultasi Medis</span>
-            <span>💚 Layanan Resep</span>
-            <span>💚 Produk Terpercaya</span>
-          </div>
-          <a href="#services" class="btn btn--green">More About Us</a>
-        </div>
-      </section>
+            body {
+                min-height: 100vh;
+                font-family:
+                    Inter,
+                    ui-sans-serif,
+                    system-ui,
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    'Segoe UI',
+                    sans-serif;
+                color: var(--text);
+                background:
+                    radial-gradient(circle at top left, rgba(23, 132, 91, 0.13), transparent 35%), var(--background);
+            }
 
-      <section class="services section-pad" id="services">
-        <div class="section-heading reveal">
-          <span class="eyebrow"><i></i> Our Services</span>
-          <h2>Our MediApotek Specialties<br />Technical Service</h2>
-        </div>
-        <div class="services__grid">
-          <article class="service-card reveal">
-            <div class="service-card__icon">💊</div>
-            <h3>Resep Dokter</h3>
-            <p>30+ produk resep</p>
-            <a href="#appointment">Read More</a>
-          </article>
-          <article class="service-card service-card--active reveal">
-            <div class="service-card__icon">🦷</div>
-            <h3>Dental Care</h3>
-            <p>20+ produk perawatan</p>
-            <a href="#appointment">Read More</a>
-          </article>
-          <article class="service-card reveal">
-            <div class="service-card__icon">🩺</div>
-            <h3>Konsultasi Obat</h3>
-            <p>30+ apoteker</p>
-            <a href="#appointment">Read More</a>
-          </article>
-          <article class="service-card reveal">
-            <div class="service-card__icon">🧠</div>
-            <h3>Vitamin & Suplemen</h3>
-            <p>30+ pilihan produk</p>
-            <a href="#appointment">Read More</a>
-          </article>
-          <article class="service-card reveal">
-            <div class="service-card__icon">🧴</div>
-            <h3>Skincare Health</h3>
-            <p>30+ produk aman</p>
-            <a href="#appointment">Read More</a>
-          </article>
-          <article class="service-card reveal">
-            <div class="service-card__icon">👁️</div>
-            <h3>Eye Care</h3>
-            <p>30+ produk mata</p>
-            <a href="#appointment">Read More</a>
-          </article>
-          <article class="service-card reveal">
-            <div class="service-card__icon">🦴</div>
-            <h3>Alat Kesehatan</h3>
-            <p>30+ alat tersedia</p>
-            <a href="#appointment">Read More</a>
-          </article>
-          <article class="service-card reveal">
-            <div class="service-card__icon">❤️</div>
-            <h3>Heart Care</h3>
-            <p>30+ produk jantung</p>
-            <a href="#appointment">Read More</a>
-          </article>
-        </div>
-        <div class="services__more reveal">You Get Our 20+ More services... <a href="#appointment">Explore All Services</a></div>
-      </section>
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
 
-      <section class="cta section-pad">
-        <div class="cta__panel reveal">
-          <div>
-            <h2>We’re Welcoming New Patients<br />And Can’t Wait To Meet You!</h2>
-            <p>Konsultasi dengan tim profesional kami untuk memilih obat dan produk kesehatan yang tepat.</p>
-            <div class="cta__actions">
-              <a href="#appointment" class="btn btn--green">Book Appointment</a>
-              <a href="#contact" class="btn btn--outline">Get Free Consulting</a>
-            </div>
-          </div>
-          <img src="{{ asset('assets/img/cta-team.svg') }}" alt="Tim layanan kesehatan" />
-        </div>
-      </section>
+            button,
+            a {
+                -webkit-tap-highlight-color: transparent;
+            }
 
-      <section class="why section-pad">
-        <div class="why__content reveal">
-          <span class="eyebrow"><i></i> Why Choose Us</span>
-          <h2>We Are Always Open For<br />Your Health Services</h2>
-          <div class="timeline">
-            <div>
-              <b>01</b>
-              <strong>Compassionate & Expert Care</strong>
-              <p>Tim apotek membantu pelanggan dengan pengalaman, empati, dan penjelasan yang mudah dipahami.</p>
-            </div>
-            <div>
-              <b>02</b>
-              <strong>Patient-Centered Approach</strong>
-              <p>Setiap saran disesuaikan dengan kebutuhan kesehatan, riwayat obat, dan keamanan pemakaian.</p>
-            </div>
-            <div>
-              <b>03</b>
-              <strong>Personalized Treatment Plans</strong>
-              <p>Kami membantu mengatur penggunaan obat agar lebih aman, terjadwal, dan efektif.</p>
-            </div>
-          </div>
-        </div>
-        <div class="why__visual reveal">
-          <img src="{{ asset('assets/img/video-care.svg') }}" alt="Layanan konsultasi farmasi" />
-        </div>
-      </section>
+            .page {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
 
-      <section class="stats reveal">
-        <div><strong>9k+</strong><span>Pelanggan Puas</span></div>
-        <div><strong>136+</strong><span>Produk Tersedia</span></div>
-        <div><strong>10k+</strong><span>Transaksi Berhasil</span></div>
-        <div><strong>60+</strong><span>Mitra Kesehatan</span></div>
-      </section>
+            .container {
+                width: min(1120px, calc(100% - 40px));
+                margin-inline: auto;
+            }
 
-      <section class="doctors section-pad">
-        <div class="section-heading reveal">
-          <span class="eyebrow"><i></i> Expert Doctors</span>
-          <h2>Meet Our Professional Doctors</h2>
-        </div>
-        <div class="doctor-grid">
-          <article class="team-card reveal"><div class="avatar avatar--one"></div><h3>Dr. Malcolm Function</h3><span>Neurologist</span></article>
-          <article class="team-card reveal"><div class="avatar avatar--two"></div><h3>Dr. Douglas Lyphe</h3><span>Physiotherapist</span></article>
-          <article class="team-card reveal"><div class="avatar avatar--three"></div><h3>Dr. Wisteria Ravenc</h3><span>Cardiologist</span></article>
-          <article class="team-card reveal"><div class="avatar avatar--four"></div><h3>Apt. Benjamin Evalent</h3><span>Pharmacist</span></article>
-        </div>
-      </section>
+            .header {
+                padding: 24px 0;
+            }
 
-      <section class="appointment section-pad" id="appointment">
-        <div class="hours reveal">
-          <h3>Working Hours</h3>
-          <p>Pelayanan tersedia untuk kebutuhan obat harian dan konsultasi.</p>
-          <div><span>Monday - Tuesday:</span><b>9am - 6pm</b></div>
-          <div><span>Wednesday - Thursday:</span><b>8am - 5pm</b></div>
-          <div><span>Friday:</span><b>7am - 10pm</b></div>
-          <div><span>Saturday:</span><b>10am - 7pm</b></div>
-          <div><span>Sunday:</span><b>Closed</b></div>
-        </div>
-        <form class="appointment-form reveal">
-          <h2>Make An Appointment</h2>
-          <label><input type="text" placeholder="Your Name" /></label>
-          <label><input type="email" placeholder="Your Email" /></label>
-          <label><input type="tel" placeholder="Phone Number" /></label>
-          <label><select><option>Choose Department</option><option>Konsultasi Obat</option><option>Resep Dokter</option><option>Alat Kesehatan</option></select></label>
-          <div class="form-row">
-            <label><input type="date" /></label>
-            <label><input type="time" /></label>
-          </div>
-          <button class="btn btn--green" type="submit">Book An Appointment</button>
-        </form>
-      </section>
+            .navbar {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 24px;
+            }
 
-      <section class="process section-pad" id="process">
-        <div class="section-heading reveal">
-          <span class="eyebrow"><i></i> Work Process</span>
-          <h2>Let’s See How We Work Process</h2>
-        </div>
-        <div class="process__row">
-          <article class="process-card reveal"><b>01</b><div>📋</div><h3>Patient Registration</h3><p>Pelanggan memilih layanan atau mengisi data kebutuhan obat.</p></article>
-          <article class="process-card reveal"><b>02</b><div>🩺</div><h3>Check-Ups</h3><p>Tim memeriksa keluhan, resep, dan kecocokan produk.</p></article>
-          <article class="process-card reveal"><b>03</b><div>💬</div><h3>Get Report</h3><p>Pelanggan menerima rekomendasi pemakaian obat.</p></article>
-          <article class="process-card reveal"><b>04</b><div>💚</div><h3>Ongoing Care</h3><p>Layanan lanjutan untuk kebutuhan kesehatan rutin.</p></article>
-        </div>
-      </section>
+            .brand {
+                display: inline-flex;
+                align-items: center;
+                gap: 12px;
+                font-size: 20px;
+                font-weight: 800;
+                letter-spacing: -0.03em;
+            }
 
-      <section class="faq section-pad">
-        <div class="faq__content reveal">
-          <span class="eyebrow"><i></i> FAQs</span>
-          <h2>Frequently Asked Have<br />Any Question?</h2>
-          <div class="accordion" data-accordion>
-            <button class="accordion__item is-open" type="button"><span>01. Layanan apa saja yang tersedia?</span><i>−</i></button>
-            <p class="accordion__panel is-open">Kami menyediakan obat resep, produk kesehatan, konsultasi farmasi, vitamin, alat kesehatan, dan layanan pemesanan obat.</p>
-            <button class="accordion__item" type="button"><span>02. Bagaimana cara membuat appointment?</span><i>+</i></button>
-            <p class="accordion__panel">Isi form appointment, pilih jadwal, lalu tim kami akan menghubungi Anda.</p>
-            <button class="accordion__item" type="button"><span>03. Apakah bisa konsultasi online?</span><i>+</i></button>
-            <p class="accordion__panel">Bisa, pelanggan dapat melakukan konsultasi dasar melalui kontak yang tersedia.</p>
-          </div>
-        </div>
-        <div class="faq__visual reveal"><img src="{{ asset('assets/img/faq-pharmacist.svg') }}" alt="FAQ apotek" /></div>
-      </section>
+            .brand-mark {
+                width: 42px;
+                height: 42px;
+                display: grid;
+                place-items: center;
+                border-radius: 14px;
+                color: #ffffff;
+                background: var(--primary);
+                box-shadow: 0 10px 24px rgba(23, 132, 91, 0.24);
+            }
 
-      <section class="testimonials section-pad">
-        <div class="section-heading reveal">
-          <span class="eyebrow"><i></i> Testimonials</span>
-          <h2>What Our Present Says?</h2>
-        </div>
-        <div class="testimonial-row">
-          <article class="testimonial reveal"><div>★★★★★</div><p>“Pelayanan cepat, penjelasan obat jelas, dan staff sangat ramah.”</p><strong>Pelican Steve</strong><span>Customer</span></article>
-          <article class="testimonial reveal"><div>★★★★★</div><p>“Konsultasi membantu saya memilih vitamin yang sesuai kebutuhan.”</p><strong>Nadia Putri</strong><span>Customer</span></article>
-        </div>
-      </section>
+            .brand-mark svg {
+                width: 24px;
+                height: 24px;
+            }
 
-      <section class="blog section-pad" id="blog">
-        <div class="blog__heading reveal">
-          <div>
-            <span class="eyebrow"><i></i> Our Blogs</span>
-            <h2>Our Latest News & Blogs</h2>
-          </div>
-          <a href="#" class="btn btn--green">View All Posts</a>
-        </div>
-        <div class="blog-grid">
-          <article class="blog-card reveal"><img src="{{ asset('assets/img/blog-1.svg') }}" alt="Artikel kesehatan" /><div><span>👤 By Jonson &nbsp; 📅 08 Nov, 2026</span><h3>How Business Is Taking Over & What to Do About It</h3><a href="#">Read More</a></div></article>
-          <article class="blog-card reveal"><img src="{{ asset('assets/img/blog-2.svg') }}" alt="Artikel apotek" /><div><span>👤 By Jonson &nbsp; 📅 08 Nov, 2026</span><h3>Tips Memilih Obat dengan Aman untuk Keluarga</h3><a href="#">Read More</a></div></article>
-          <article class="blog-card reveal"><img src="{{ asset('assets/img/blog-3.svg') }}" alt="Artikel konsultasi" /><div><span>👤 By Jonson &nbsp; 📅 08 Nov, 2026</span><h3>Kapan Harus Konsultasi dengan Apoteker?</h3><a href="#">Read More</a></div></article>
-        </div>
-      </section>
-    </main>
+            .nav-action {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 44px;
+                padding: 0 20px;
+                border: 1px solid var(--border);
+                border-radius: 999px;
+                font-size: 14px;
+                font-weight: 700;
+                background: rgba(255, 255, 255, 0.76);
+                transition:
+                    transform 180ms ease,
+                    border-color 180ms ease,
+                    background 180ms ease;
+            }
 
-    <footer class="footer" id="contact">
-      <div class="newsletter reveal">
-        <h2>Subscribe For Newsletter</h2>
-        <form>
-          <input type="email" placeholder="Enter your mail" />
-          <button class="btn btn--green" type="submit">Subscribe</button>
-        </form>
-      </div>
-      <div class="footer__main">
-        <div>
-          <a href="#top" class="brand brand--footer"><span class="brand__mark"></span><span><strong>MediApotek</strong><small>Health & Pharmacy</small></span></a>
-          <p>Subscribe to our newsletter today to receive latest health information and pharmacy promo.</p>
-          <p>📍 2478 Street City Ohio 90255</p>
-          <p>✉ info@mediapotek.com</p>
-          <p>☎ +(402) 763 282 46</p>
+            .nav-action:hover {
+                transform: translateY(-2px);
+                border-color: rgba(23, 132, 91, 0.4);
+                background: #ffffff;
+            }
+
+            .main {
+                flex: 1;
+                display: grid;
+                align-items: center;
+                padding: 48px 0 72px;
+            }
+
+            .hero {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(360px, 0.82fr);
+                gap: 72px;
+                align-items: center;
+            }
+
+            .eyebrow {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                margin-bottom: 24px;
+                color: var(--primary-dark);
+                font-size: 13px;
+                font-weight: 800;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+            }
+
+            .eyebrow-dot {
+                width: 9px;
+                height: 9px;
+                border-radius: 50%;
+                background: #2dbe82;
+                box-shadow: 0 0 0 7px rgba(45, 190, 130, 0.13);
+            }
+
+            h1 {
+                max-width: 720px;
+                margin-bottom: 24px;
+                font-size: clamp(48px, 7vw, 82px);
+                line-height: 0.98;
+                letter-spacing: -0.065em;
+            }
+
+            h1 span {
+                color: var(--primary);
+            }
+
+            .lead {
+                max-width: 630px;
+                margin-bottom: 34px;
+                color: var(--muted);
+                font-size: clamp(17px, 2vw, 20px);
+                line-height: 1.7;
+            }
+
+            .hero-actions {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 14px;
+            }
+
+            .button {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                min-height: 54px;
+                padding: 0 26px;
+                border-radius: 16px;
+                font-size: 15px;
+                font-weight: 800;
+                transition:
+                    transform 180ms ease,
+                    box-shadow 180ms ease,
+                    background 180ms ease;
+            }
+
+            .button-primary {
+                color: #ffffff;
+                background: var(--primary);
+                box-shadow: 0 16px 34px rgba(23, 132, 91, 0.24);
+            }
+
+            .button-primary:hover {
+                transform: translateY(-3px);
+                background: var(--primary-dark);
+                box-shadow: 0 20px 40px rgba(23, 132, 91, 0.29);
+            }
+
+            .button-secondary {
+                border: 1px solid var(--border);
+                background: rgba(255, 255, 255, 0.78);
+            }
+
+            .button-secondary:hover {
+                transform: translateY(-3px);
+                background: #ffffff;
+            }
+
+            .availability {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-top: 24px;
+                color: var(--muted);
+                font-size: 14px;
+            }
+
+            .availability-dot {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: #24b47e;
+                box-shadow: 0 0 0 6px rgba(36, 180, 126, 0.12);
+            }
+
+            .chat-card {
+                position: relative;
+                overflow: hidden;
+                padding: 26px;
+                border: 1px solid rgba(255, 255, 255, 0.9);
+                border-radius: 32px;
+                background: rgba(255, 255, 255, 0.86);
+                box-shadow: var(--shadow);
+                backdrop-filter: blur(18px);
+            }
+
+            .chat-card::before {
+                content: '';
+                position: absolute;
+                inset: 0 0 auto;
+                height: 5px;
+                background: linear-gradient(90deg, var(--primary), #42c894);
+            }
+
+            .chat-header {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .avatar {
+                width: 50px;
+                height: 50px;
+                display: grid;
+                place-items: center;
+                flex: 0 0 auto;
+                border-radius: 16px;
+                color: #ffffff;
+                background: var(--primary);
+                font-weight: 800;
+            }
+
+            .chat-header strong {
+                display: block;
+                margin-bottom: 4px;
+                font-size: 16px;
+            }
+
+            .chat-status {
+                display: flex;
+                align-items: center;
+                gap: 7px;
+                color: var(--muted);
+                font-size: 13px;
+            }
+
+            .chat-status span {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: #24b47e;
+            }
+
+            .messages {
+                display: grid;
+                gap: 14px;
+                padding: 24px 0;
+            }
+
+            .message {
+                max-width: 85%;
+                padding: 14px 16px;
+                border-radius: 18px;
+                font-size: 14px;
+                line-height: 1.55;
+            }
+
+            .message-apoteker {
+                border-bottom-left-radius: 6px;
+                background: #edf6f2;
+            }
+
+            .message-user {
+                justify-self: end;
+                border-bottom-right-radius: 6px;
+                color: #ffffff;
+                background: var(--primary);
+            }
+
+            .chat-input {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 10px 10px 10px 16px;
+                border: 1px solid var(--border);
+                border-radius: 18px;
+                background: #ffffff;
+            }
+
+            .chat-input span {
+                flex: 1;
+                color: #8aa096;
+                font-size: 14px;
+            }
+
+            .send-button {
+                width: 42px;
+                height: 42px;
+                display: grid;
+                place-items: center;
+                border: 0;
+                border-radius: 13px;
+                color: #ffffff;
+                background: var(--primary);
+                cursor: pointer;
+            }
+
+            .send-button svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .footer {
+                padding: 20px 0 32px;
+                color: var(--muted);
+                font-size: 13px;
+                text-align: center;
+            }
+
+            @media (max-width: 900px) {
+                .hero {
+                    grid-template-columns: 1fr;
+                    gap: 48px;
+                }
+
+                .chat-card {
+                    max-width: 620px;
+                }
+            }
+
+            @media (max-width: 600px) {
+                .container {
+                    width: min(100% - 28px, 1120px);
+                }
+
+                .header {
+                    padding: 18px 0;
+                }
+
+                .brand {
+                    font-size: 17px;
+                }
+
+                .brand-mark {
+                    width: 38px;
+                    height: 38px;
+                }
+
+                .nav-action {
+                    min-height: 40px;
+                    padding: 0 15px;
+                    font-size: 13px;
+                }
+
+                .main {
+                    padding-top: 34px;
+                }
+
+                h1 {
+                    font-size: clamp(44px, 14vw, 64px);
+                }
+
+                .hero-actions {
+                    align-items: stretch;
+                    flex-direction: column;
+                }
+
+                .button {
+                    width: 100%;
+                }
+
+                .chat-card {
+                    padding: 20px;
+                    border-radius: 24px;
+                }
+
+                .message {
+                    max-width: 92%;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="page">
+            <header class="header">
+                <div class="container">
+                    <nav class="navbar">
+                        <a href="{{ url('/') }}" class="brand">
+                            <span class="brand-mark" aria-hidden="true">
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2.2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path d="M12 3v18"></path>
+                                    <path d="M3 12h18"></path>
+                                </svg>
+                            </span>
+
+                            <span>MD Farma</span>
+                        </a>
+
+                        @guest
+                            <a class="nav-action" href="{{ route('filament.admin.auth.login') }}">Masuk</a>
+                        @endguest
+
+                        @auth
+                            <a class="nav-action" href="{{ url('/admin') }}">Dashboard</a>
+                        @endauth
+                    </nav>
+                </div>
+            </header>
+
+            <main class="main">
+                <div class="container">
+                    <section class="hero">
+                        <div class="hero-content">
+                            <div class="eyebrow">
+                                <span class="eyebrow-dot"></span>
+                                Konsultasi Apotek Online
+                            </div>
+
+                            <h1>
+                                Tanya obat,
+                                <span>langsung ke apoteker.</span>
+                            </h1>
+
+                            <p class="lead">
+                                Sampaikan pertanyaan tentang penggunaan obat, dosis, efek samping, atau interaksi obat
+                                melalui live chat yang sederhana dan aman.
+                            </p>
+
+                            <div class="hero-actions">
+                                @guest
+                                    <a class="button button-primary" href="{{ route('filament.admin.auth.login') }}">
+                                        Mulai Live Chat
+
+                                        <svg
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            aria-hidden="true"
+                                        >
+                                            <path d="M5 12h14"></path>
+                                            <path d="m13 6 6 6-6 6"></path>
+                                        </svg>
+                                    </a>
+                                @endguest
+
+                                @auth
+                                    <a class="button button-primary" href="{{ url('/admin') }}">
+                                        Buka Live Chat
+
+                                        <svg
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            aria-hidden="true"
+                                        >
+                                            <path d="M5 12h14"></path>
+                                            <path d="m13 6 6 6-6 6"></path>
+                                        </svg>
+                                    </a>
+                                @endauth
+
+                                <a class="button button-secondary" href="#cara-kerja">Cara Kerja</a>
+                            </div>
+
+                            <div class="availability">
+                                <span class="availability-dot"></span>
+                                Apoteker siap menerima konsultasi
+                            </div>
+                        </div>
+
+                        <div class="chat-card" id="cara-kerja">
+                            <div class="chat-header">
+                                <div class="avatar">AF</div>
+
+                                <div>
+                                    <strong>Apoteker MD Farma</strong>
+
+                                    <div class="chat-status">
+                                        <span></span>
+                                        Online
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="messages">
+                                <div class="message message-apoteker">
+                                    Halo, ada yang bisa kami bantu terkait obat Anda?
+                                </div>
+
+                                <div class="message message-user">Apakah obat ini aman diminum setelah makan?</div>
+
+                                <div class="message message-apoteker">
+                                    Silakan kirim nama obat dan aturan pakai pada kemasannya. Apoteker akan membantu
+                                    memeriksanya.
+                                </div>
+                            </div>
+
+                            <div class="chat-input" aria-hidden="true">
+                                <span>Tulis pertanyaan Anda...</span>
+
+                                <button class="send-button" type="button" tabindex="-1" aria-label="Kirim pesan">
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    >
+                                        <path d="m22 2-7 20-4-9-9-4Z"></path>
+                                        <path d="M22 2 11 13"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+
+            <footer class="footer">
+                <div class="container">© {{ date('Y') }} MD Farma. Live chat bukan pengganti pemeriksaan darurat.</div>
+            </footer>
         </div>
-        <div><h3>Quick Link</h3><a href="#about">About Us</a><a href="#services">Our Services</a><a href="#appointment">Appointment</a><a href="#contact">Contact Us</a><a href="#">Privacy Policy</a></div>
-        <div><h3>Popular Service</h3><a href="#">Cardiology Care</a><a href="#">Urgent Care</a><a href="#">Orthopedic Care</a><a href="#">Diagnosis Department</a><a href="#">Dental Service</a></div>
-        <div><h3>Recent Post</h3><div class="recent"><img src="{{ asset('assets/img/blog-1.svg') }}" alt="Recent"/><span>Provide a detailed list of the medical<br/><small>08 Nov, 2026</small></span></div><div class="recent"><img src="{{ asset('assets/img/blog-2.svg') }}" alt="Recent"/><span>Provide a detailed list of the medical<br/><small>08 Nov, 2026</small></span></div></div>
-      </div>
-      <div class="footer__bottom">
-        <span>Copyright 2026 <b>MediApotek</b>. All Rights Reserved.</span>
-        <div><a href="#">f</a><a href="#">x</a><a href="#">ig</a><a href="#">in</a></div>
-      </div>
-    </footer>
-  </div>
-  <script src="{{ asset('assets/js/script.js') }}"></script>
-</body>
+    </body>
 </html>

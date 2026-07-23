@@ -6,20 +6,13 @@
     "keywords": [
         "laravel",
         "framework",
-        "filament",
         "starter kit"
     ],
     "license": "MIT",
     "require": {
         "php": "^8.2",
         "awcodes/overlook": "^4.0",
-        "bezhansalleh/filament-shield": "^4.1",
-        "caresome/filament-auth-designer": "^3.0",
         "charrafimed/global-search-modal": "^5.0",
-        "dutchcodingcompany/filament-developer-logins": "^2.1",
-        "filament/filament": "^5.2",
-        "jacobtims/filament-logger": "^1.1",
-        "jeffgreco13/filament-breezy": "^3.1",
         "laravel/framework": "^13.0",
         "laravel/reverb": "^1.0",
         "laravel/tinker": "^3.0",

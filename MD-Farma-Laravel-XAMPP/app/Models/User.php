@@ -4,76 +4,70 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
 
 final class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, HasRoles, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
+    public const ROLE_ADMIN = 'admin';
+
+    public const ROLE_DOCTOR = 'dokter';
+
+    public const ROLE_PATIENT = 'pasien';
+
     protected $fillable = [
-        'avatar_url',
         'name',
         'email',
         'password',
+        'role',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    public function getFilamentAvatarUrl(): string
+    public function patientProfile(): HasOne
     {
-        if ($this->avatar_url) {
-            return asset('storage/'.$this->avatar_url);
-        }
-        $hash = md5(mb_strtolower(mb_trim($this->email)));
-
-        return 'https://www.gravatar.com/avatar/'.$hash.'?d=mp&r=g&s=250';
-
+        return $this->hasOne(PatientProfile::class);
     }
 
-    public function canAccessPanel(Panel $panel): bool
-    {
-        return true;
-    }
-
-    public function patientConversations()
+    public function patientConversations(): HasMany
     {
         return $this->hasMany(Conversation::class, 'patient_id');
     }
 
-    public function staffConversations()
+    public function doctorConversations(): HasMany
     {
-        return $this->hasMany(Conversation::class, 'staff_id');
+        return $this->hasMany(Conversation::class, 'doctor_id');
     }
 
-    public function messages()
+    public function messages(): HasMany
     {
         return $this->hasMany(Message::class, 'sender_id');
     }
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
+    public function isAdmin(): bool
+    {
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isDoctor(): bool
+    {
+        return $this->role === self::ROLE_DOCTOR;
+    }
+
+    public function isPatient(): bool
+    {
+        return $this->role === self::ROLE_PATIENT;
+    }
+
     protected function casts(): array
     {
         return [
