@@ -23,7 +23,6 @@
         "symfony/error-handler": "^7.4"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^4.0",
         "fakerphp/faker": "^1.23",
         "laravel/boost": "^2.1",
         "laravel/pint": "^1.24",

@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title><?php echo $__env->yieldContent('title', 'MD Farma'); ?></title>
+        <title><?php echo e(config('app.name', 'MD Farma')); ?></title>
         <link rel="stylesheet" href="<?php echo e(asset('css/style.css')); ?>" />
         <?php echo $__env->yieldPushContent('head'); ?>
     </head>

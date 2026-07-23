@@ -6,12 +6,12 @@ Project web MD Farma dibangun menggunakan Laravel dengan fitur autentikasi, peng
 
 Pastikan perangkat sudah memiliki:
 
-* PHP 8.3 atau lebih baru
-* Composer
-* Node.js dan npm
-* MySQL atau MariaDB
-* XAMPP
-* Git
+- PHP 8.3 atau lebih baru
+- Composer
+- Node.js dan npm
+- MySQL atau MariaDB
+- XAMPP
+- Git
 
 ## Instalasi Project
 

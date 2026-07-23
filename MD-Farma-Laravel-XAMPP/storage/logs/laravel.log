@@ -1877,3 +1877,30 @@
 #34 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
 #35 {main}
 "} 
+[2026-07-23 20:43:59] local.ERROR: include(C:\Users\LENOVO\Documents\MD-Farma-Laravel-XAMPP-PHP83\MD-Farma-Laravel-XAMPP\vendor\composer/../php-debugbar/php-debugbar/src/DebugBar.php): Failed to open stream: No such file or directory {"exception":"[object] (ErrorException(code: 0): include(C:\\Users\\LENOVO\\Documents\\MD-Farma-Laravel-XAMPP-PHP83\\MD-Farma-Laravel-XAMPP\\vendor\\composer/../php-debugbar/php-debugbar/src/DebugBar.php): Failed to open stream: No such file or directory at C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/composer/ClassLoader.php:576)
+[stacktrace]
+#0 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(263): Illuminate/Foundation/Bootstrap/HandleExceptions->handleError(2, 'include(C://User...', 'C://Users//LENOVO...', 576)
+#1 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/composer/ClassLoader.php(576): Illuminate/Foundation/Bootstrap/HandleExceptions->Illuminate/Foundation/Bootstrap/{closure}(2, 'include(C://User...', 'C://Users//LENOVO...', 576)
+#2 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/composer/ClassLoader.php(576): include('C://Users//LENOVO...')
+#3 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/composer/ClassLoader.php(427): Composer/Autoload/{closure}('C://Users//LENOVO...')
+#4 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/barryvdh/laravel-debugbar/src/LaravelDebugbar.php(80): Composer/Autoload/ClassLoader->loadClass('DebugBar//DebugB...')
+#5 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/composer/ClassLoader.php(576): include('C://Users//LENOVO...')
+#6 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/composer/ClassLoader.php(427): Composer/Autoload/{closure}('C://Users//LENOVO...')
+#7 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/barryvdh/laravel-debugbar/src/ServiceProvider.php(64): Composer/Autoload/ClassLoader->loadClass('Fruitcake//Larav...')
+#8 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Fruitcake/LaravelDebugbar/ServiceProvider->boot(Object(Illuminate/Events/Dispatcher))
+#9 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate/Container/BoundMethod::Illuminate/Container/{closure}()
+#10 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate/Container/Util::unwrapIfClosure(Object(Closure))
+#11 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate/Container/BoundMethod::callBoundMethod(Object(Illuminate/Foundation/Application), Array, Object(Closure))
+#12 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/laravel/framework/src/Illuminate/Container/Container.php(799): Illuminate/Container/BoundMethod::call(Object(Illuminate/Foundation/Application), Array, Array, NULL)
+#13 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1158): Illuminate/Container/Container->call(Array)
+#14 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1139): Illuminate/Foundation/Application->bootProvider(Object(Fruitcake/LaravelDebugbar/ServiceProvider))
+#15 [internal function]: Illuminate/Foundation/Application->Illuminate/Foundation/{closure}(Object(Fruitcake/LaravelDebugbar/ServiceProvider), 'Fruitcake//Larav...')
+#16 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1138): array_walk(Array, Object(Closure))
+#17 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php(17): Illuminate/Foundation/Application->boot()
+#18 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(349): Illuminate/Foundation/Bootstrap/BootProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#19 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#20 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#21 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1242): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#22 C:/Users/LENOVO/Documents/MD-Farma-Laravel-XAMPP-PHP83/MD-Farma-Laravel-XAMPP/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#23 {main}
+"} 

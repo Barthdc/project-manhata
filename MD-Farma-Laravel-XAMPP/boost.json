@@ -4,14 +4,12 @@
     "guidelines": true,
     "herd_mcp": false,
     "mcp": true,
-    "packages": ["barryvdh/laravel-debugbar"],
     "sail": false,
     "skills": [
         "laravel-best-practices",
         "livewire-development",
         "pest-testing",
         "echo-development",
-        "tailwindcss-development",
-        "debug-using-debugbar"
+        "tailwindcss-development"
     ]
 }
