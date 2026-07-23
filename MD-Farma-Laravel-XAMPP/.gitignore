@@ -5,10 +5,7 @@
 /storage/*.key
 
 # Lock file tidak di-push
-composer.lock
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
+
 
 # File sistem
 .DS_Store
